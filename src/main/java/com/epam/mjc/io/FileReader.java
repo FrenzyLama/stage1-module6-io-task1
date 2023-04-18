@@ -1,10 +1,12 @@
 package com.epam.mjc.io;
 
 import java.io.*;
+import java.util.logging.Logger;
 
 
 public class FileReader {
     private final Mapper mapper = new Mapper();
+    private static final Logger logger = Logger.getLogger(FileReader.class.getName());
 
     public Profile getDataFromFile(File file) {
         Profile profile = new Profile();
@@ -19,7 +21,7 @@ public class FileReader {
 
             profile = mapper.mapToProfile(stringBuilder.toString());
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            logger.warning(e.getMessage());
         }
         return profile;
     }
